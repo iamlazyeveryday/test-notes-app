@@ -1,0 +1,19 @@
+<div class="reminder-form-container">
+  <h2>{{ reminder.reminderId ? 'Редактировать напоминание' : 'Новое напоминание' }}</h2>
+  <form (ngSubmit)="onNoteSave()">
+    <label for="title">{{ reminderTitle }}</label>
+    <input
+      id="title"
+      [(ngModel)]="reminder.title"
+      name="title"
+      autofocus
+      placeholder="Введите название"
+      >
+
+    <label for="date">{{ reminderDate }}</label>
+    <input id="date" type="datetime-local" [(ngModel)]="reminder.dueDate" name="date">
+
+    <button type="submit">{{ reminderSaveBtn }}</button>
+    <button type="button" (click)="onNoteClose()">{{ reminderCancelBtn }}</button>
+  </form>
+</div>

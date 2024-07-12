@@ -1,0 +1,58 @@
+<div
+  class="notes-list-container"
+  (click)="handleClick($event)"
+>
+  <button
+    type="button"
+    class="new-note-btn"
+    (click)="openForm()"
+  >
+    {{ newNote }}
+  </button>
+
+  <div class="notes-list">
+    <div
+      *ngFor="let item of notes"
+      class="notes-list-item"
+    >
+      <div class="note-header">
+        <h2>{{ item.title }}</h2>
+          <div class="note-actions">
+            <button
+              class="options-btn"
+              (click)="toggleOptions(item, $event)"
+            >
+              {{ tripleDot }}
+            </button>
+            <div
+              class="options-dropdown"
+              *ngIf="item.showOptionsMenu"
+            >
+              <button (click)="onEdit(item)">
+                {{ editButton }}
+              </button>
+              <button (click)="onDelete(item.noteId)">
+                {{ deleteButton }}
+              </button>
+            </div>
+          </div>
+        </div>
+      <p>{{ item.content }}</p>
+    </div>
+  </div>
+
+  <ng-container *ngIf="showForm">
+    <div class="modal">
+      <div class="modal-content">
+        <app-note-form
+          [note]="selectedNote"
+          (saveNote)="saveNote($event)"
+          (closeForm)="closeForm()"
+        >
+        </app-note-form>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+

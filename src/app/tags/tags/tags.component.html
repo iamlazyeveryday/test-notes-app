@@ -1,0 +1,18 @@
+<div class="tags-container">
+  <form [formGroup]="tagForm" (ngSubmit)="addTag()">
+    <input
+      formControlName="name"
+      placeholder="Введите тэг"
+      autofocus
+    >
+          <!-- autofocus инпута не работает из-за роутинга -->
+    <button>{{ addTagBtn }}</button>
+  </form>
+
+  <div class="tags-list">
+    <div *ngFor="let tag of tags" class="tag">
+      <div class="tag-content">{{ tag.name }}</div>
+      <button (click)="deleteTag(tag.tagId)">{{ deleteTagBtn }}</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div
+  class="reminders-list-container"
+  (click)="handleClick($event)"
+>
+  <button
+    type="button"
+    class="new-reminder-btn"
+    (click)="openForm()"
+  >
+    {{ newReminder }}
+  </button>
+
+  <div class="reminders-list">
+    <div
+      *ngFor="let item of reminders"
+      class="reminders-list-item"
+    >
+      <div class="reminder-header">
+        <h2>{{ item.title }}</h2>
+        <p class="reminder-due-date">{{ item.dueDate | date: 'short' }}</p>
+          <div class="reminder-actions">
+            <button
+              class="options-btn"
+              (click)="toggleOptions(item, $event)"
+            >
+              {{ tripleDot }}
+            </button>
+            <div
+              class="options-dropdown"
+              *ngIf="item.showOptionsMenu"
+            >
+              <button (click)="onEdit(item)">
+                {{ editButton }}
+              </button>
+              <button (click)="onDelete(item.reminderId)">
+                {{ deleteButton }}
+              </button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="showForm">
+    <div class="modal">
+      <div class="modal-content">
+        <app-reminder-form
+          [reminder]="selectedReminder"
+          (saveNote)="saveReminder($event)"
+          (closeForm)="closeForm()"
+        >
+        </app-reminder-form>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+

@@ -1,0 +1,43 @@
+<div class="note-form-container">
+  <h2>{{ note.noteId ? 'Редактировать заметку' : 'Новая заметка' }}</h2>
+  <form [formGroup]="noteForm" (ngSubmit)="onNoteSave()">
+    <label for="title">{{ noteTitle }}</label>
+    <input
+      id="title"
+      formControlName="title"
+      name="title"
+      placeholder="Введите название"
+      autofocus
+    >
+
+    <label for="content">{{ noteContent }}</label>
+    <textarea
+      id="content"
+      formControlName="content"
+      name="content"
+      placeholder="Напишите заметку"
+    ></textarea>
+
+    <label for="date">{{ noteDate }}</label>
+    <input
+      id="date"
+      type="datetime-local"
+      formControlName="dueDate"
+      name="date"
+    >
+
+    <label for="tags">{{ noteTags }}</label>
+    <div>
+      <select formControlName="tags" multiple (change)="onTagsChange($event)">
+        <option *ngFor="let tag of availableTags" [value]="tag">{{ tag }}</option>
+      </select>
+    </div>
+
+    <div class="selected-tags">
+      <span *ngFor="let tag of noteForm.get('tags')?.value">{{ tag }}</span>
+    </div>
+
+    <button type="submit">{{ noteSaveBtn }}</button>
+    <button type="button" (click)="onNoteClose()">{{ noteCancelBtn }}</button>
+  </form>
+</div>

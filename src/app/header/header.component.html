@@ -1,0 +1,18 @@
+<header>
+  <div class="title">
+    <h1>{{ title }}</h1>
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <a [routerLink]="['/notes']" routerLinkActive="active">{{ notes }}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/reminders']" routerLinkActive="active">{{ reminders }}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/tags']" routerLinkActive="active">{{ tags }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
